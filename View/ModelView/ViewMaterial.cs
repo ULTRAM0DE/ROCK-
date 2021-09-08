@@ -90,6 +90,7 @@ namespace Yffff.View.ModelView
                 DB.dEntities1 entities1 = new dEntities1();
                 var s = entities1.Receipts.Where(x => x.Id_Material == materials.Id).Sum(x => x.MaterialsCount);
                 string content = $"Остаток:{s} шт";
+                count = (int)s;
                 return content;
             }
             catch

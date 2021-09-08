@@ -40,5 +40,10 @@ namespace Yffff.View
             menu.Show();
             this.Close();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            MessageBox.Show("объект не найден");
+        }
     }
 }
