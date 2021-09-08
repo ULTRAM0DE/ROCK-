@@ -1,0 +1,81 @@
+﻿<Window x:Class="Yffff.View.WindowMaterialSklad"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Yffff.View"
+        mc:Ignorable="d"
+        Title="Материалы склада"  MaxHeight="1000" MaxWidth="1000" MinHeight="500" MinWidth="600"
+        Icon="/Image\Большая пачка.ico" FontFamily="Verdana">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <!--Меню слева-->
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left"
+                    Grid.Row="0" Grid.RowSpan="2">
+            
+            <Button Margin="10" x:Name="btDown" Click="btDn_Click" 
+                    ToolTip="Вернемся назад" Background="#D32B39">
+                Назад
+            </Button>
+            <Image ToolTip="Рога и копыта" Margin="10" Width="50" Height="50" Source="/Image\Большая пачка.ico" ></Image>
+        </StackPanel>
+        
+        <!--Строка поиска и фильрации-->
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+            <TextBox Margin="5" VerticalAlignment="Center"
+                     Background="#FFC1C1" MinWidth="100">
+                Поиск
+            </TextBox>
+            <ComboBox Margin="5"  VerticalAlignment="Center" 
+                      Background="#FFC1C1" MinWidth="100" ToolTip="Сортировка">
+            </ComboBox>
+            <ComboBox Margin="5"  VerticalAlignment="Center" 
+                      Background="#FFC1C1" MinWidth="100" ToolTip="Фильтрация">
+            </ComboBox>
+        </StackPanel>
+        
+        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="2">
+            <ListBox x:Name="lbContent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="2">
+                            <Grid HorizontalAlignment="Stretch" Margin="25">
+                            
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                            
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Image MaxHeight="70" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                   MaxWidth="50" Source="{Binding Image}"/>
+                                <Label Grid.Column="1" Grid.Row="0" Content="{Binding NameEndType}"></Label>
+                                <Label Grid.Column="1" Grid.Row="1" Content="{Binding MinCol}"></Label>
+                                <Label Grid.Column="1" Grid.Row="2" Content="{Binding Providers}"></Label>
+                                <Label Grid.Column="1" Grid.Row="2" Content="{Binding Ostatok}"></Label>
+                                                      
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+        
+    </Grid>
+</Window>
