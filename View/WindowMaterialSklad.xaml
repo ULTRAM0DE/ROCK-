@@ -64,11 +64,11 @@
                             </Grid.RowDefinitions>
 
                             <Image MaxHeight="70" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
-                                   MaxWidth="50" Source="{Binding Image}"/>
+                                   MaxWidth="70" Source="{Binding Image}"/>
                                 <Label Grid.Column="1" Grid.Row="0" Content="{Binding NameEndType}"></Label>
                                 <Label Grid.Column="1" Grid.Row="1" Content="{Binding MinCol}"></Label>
                                 <Label Grid.Column="1" Grid.Row="2" Content="{Binding Providers}"></Label>
-                                <Label Grid.Column="1" Grid.Row="2" Content="{Binding Ostatok}"></Label>
+                                <Label Grid.Column="2" Grid.Row="1" Content="{Binding Ostatok}"></Label>
                                                       
                             </Grid>
                         </Border>

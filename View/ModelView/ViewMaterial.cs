@@ -60,6 +60,10 @@ namespace Yffff.View.ModelView
                     {
                         content += $"{item},";
                     }
+                    if (i%3 ==0)
+                    {
+                        content += "\n";
+                    }
                 }
            
                 return content;

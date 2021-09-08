@@ -23,16 +23,7 @@ namespace Yffff.View
         public WindowMaterialSklad()
         {
             InitializeComponent();
-            
-
-
-
-            /*{
-                new ModelView.ViewMaterial{Image=@"/Image\image_10.jpeg",MinCol="Минимальное количество 2 шт",
-                    Ostatok = "Остаток: 2 шт", Providers="Поставщик: Рога и копыта, СГК, и еще что то",NameEndType="Какая то штука | Зачем то нужка"},
-                new ModelView.ViewMaterial{Image=@"/Image\image_1.jpeg",MinCol="Минимальное количество 5 шт",
-                    Ostatok = "Остаток: 0 шт", Providers="Поставщик: Рога и копыта, СГК, и еще что то",NameEndType="Какая то штука | Зачем то нужка"}
-            };*/
+  
             try
             {
                 lbContent.ItemsSource = ControllerMaterial.GetViewMaterials();
