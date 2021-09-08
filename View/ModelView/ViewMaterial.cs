@@ -35,7 +35,34 @@ namespace Yffff.View.ModelView
             {
                 DB.dEntities1 entities1 = new dEntities1();
 
-                var provider = entities1.Receipts.GroupBy(x => x.Id_Material).Select(g => new { Name = g.Key }).ToList();
+                var s = entities1.Receipts.Where(x =>x.Id_Material == materials.Id).ToList();
+                List<string> vs = new List<string>();
+                
+
+                foreach(var item in s)
+                {
+                    vs.Add(item.Suppliers.Name);
+                }
+                
+                vs = vs.Distinct().OrderBy(x => x).ToList();
+
+                string content = "Поставщики";
+                
+                for (int i = 0; i < vs.Count; i++)
+                {
+                    string item = vs[i];
+
+                    if(i==vs.Count-1)
+                    {
+                        content += $"{item}.";
+                    }
+                    else
+                    {
+                        content += $"{item},";
+                    }
+                }
+
+               /* var provider = entities1.Receipts.GroupBy(x => x.Id_Material).Select(g => new { Name = g.Key }).ToList();
 
                 List<string> providers = new List<string>();
 
@@ -49,12 +76,12 @@ namespace Yffff.View.ModelView
                 foreach(var item in providers)
                 {
                     content += $"{item},";
-                }
+                }*/
                 return content;
             }
             catch
             {
-                throw new Exception("ошибка бд");
+                throw new Exception("Ошибка бд");
             }
         }
 
