@@ -21,7 +21,7 @@ namespace Yffff.View.ModelView
         }
         public ViewMaterial(DB.Materials materials)
         {
-            Image = @"/Image/" + materials.ImagePath;
+            Image = materials.ImagePath;
             NameEndType = $"{materials.MaterialTypes.Name} | {materials.Name}";
             MinCol = $"Минимальное количество {materials.MinCount} шт";
             Ostatok = GetOstatoc(materials);
@@ -61,22 +61,7 @@ namespace Yffff.View.ModelView
                         content += $"{item},";
                     }
                 }
-
-               /* var provider = entities1.Receipts.GroupBy(x => x.Id_Material).Select(g => new { Name = g.Key }).ToList();
-
-                List<string> providers = new List<string>();
-
-                foreach(var item in provider )
-                {
-                    providers.Add(item.Name.ToString());
-                }
-
-                string content = "Поставщики:";
-
-                foreach(var item in providers)
-                {
-                    content += $"{item},";
-                }*/
+           
                 return content;
             }
             catch
@@ -87,7 +72,18 @@ namespace Yffff.View.ModelView
 
         private string GetOstatoc(Materials materials)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DB.dEntities1 entities1 = new dEntities1();
+                var s = entities1.Receipts.Where(x => x.Id_Material == materials.Id).Sum(x => x.MaterialsCount);
+                string content = $"Остаток:{s} шт";
+                return content;
+            }
+            catch
+            {
+                throw new NotImplementedException();
+            }
+            
         }
     }
 }
