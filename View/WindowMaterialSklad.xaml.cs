@@ -25,10 +25,18 @@ namespace Yffff.View
         private int actualList = 1;
         public int actualMax;
 
+        private List<string> constenCBSort = new List<string>
+        {
+             "Без сортировки", "По наименованию (Возрастание)" ,"По наименованию (Убывание)" ,
+            "По остатку на складе (Возрастание)", "По остатку на складе (Убывание)",
+            "По стоимости (Возрастание)" ,"По стоимости (Убывание)"
+        };
+
         private List<View.ModelView.ViewMaterial> content = new List<ModelView.ViewMaterial>();
         public WindowMaterialSklad()
         {
             InitializeComponent();
+           
   
             try
             {
@@ -37,6 +45,9 @@ namespace Yffff.View
                 var s = IntMin(actualList);
                 DinamicStakBytton(content.Count);
                 actualMax = spButtons.Children.Count - 2;
+                labelList.Content = $"лист{actualList}";
+                CbSort.ItemsSource = constenCBSort;
+                CbSort.SelectedIndex = 0;
             }
             catch(Exception ex)
             {
@@ -56,21 +67,23 @@ namespace Yffff.View
             }
 
         }
-       
-
-
-            private void btDn_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// кнопка назад
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btDn_Click(object sender, RoutedEventArgs e)
         {
             View.WindowMenu menu = new WindowMenu();
             menu.Show();
             this.Close();
         }
-
+        
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             MessageBox.Show("объект не найден");
         }
-
+        #region #генерация стекпенел навигации
         public void DinamicStakBytton(int count)
         {
             int countButton = GetCountButton( count);
@@ -85,8 +98,21 @@ namespace Yffff.View
 
         }
 
-        
+        private Button CreateButton(string name, string content, RoutedEventHandler action)
+        {
+            var b = new Button() { Name = name, Content = content, Margin = new Thickness(5) };
+            b.Padding = new Thickness(4);
+            b.Background = new SolidColorBrush(Color.FromArgb(255, 255, 193, 193));
+            b.HorizontalAlignment = HorizontalAlignment.Center;
 
+            b.Click += action;
+
+            return b;
+        }
+        #endregion
+
+
+        #region #Методы кнопок списка
         private void btNext_Click(object sender, RoutedEventArgs e)
         {
             var but = e.OriginalSource as Button;
@@ -94,56 +120,18 @@ namespace Yffff.View
             var s = IntMin(actualList);
             RefreshContent(s, CountContent(s, content.Count));
         }
-
-        private Button CreateButton(string name, string content,  RoutedEventHandler action )
-        {
-            var b = new Button() { Name = name, Content = content, Margin = new Thickness(5) };
-            b.Padding = new Thickness(4);
-            b.Background = new SolidColorBrush(Color.FromArgb(255, 255, 193, 193));
-            b.HorizontalAlignment = HorizontalAlignment.Center;
-            
-            b.Click += action;
-
-            return b;
-        }
-
-
-       
-            public int GetCountButton(int count)
-            {
-                if (count % 15 == 0)
-                {
-                    return count / 15;
-                }
-                else
-                {
-                    return count / 15 + 1;
-                }
-
-            }
-        
-        
-
         private void btDown_Click(object sender, RoutedEventArgs e)
         {
-            if(actualList>1)
+            if (actualList > 1)
             {
                 actualList--;
                 var s = IntMin(actualList);
-                RefreshContent(s, CountContent(s,content.Count));
+                RefreshContent(s, CountContent(s, content.Count));
             }
         }
-
-
-        private void RefreshContent(int start, int end )
+        private void btUp_Click(object Sender, RoutedEventArgs e)
         {
-            var s = content.GetRange(start, end);
-            lbContent.ItemsSource = s;
-        }
-
-        private void btUp_Click(object Sender,RoutedEventArgs e)
-        {
-            if(actualList<actualMax)
+            if (actualList < actualMax)
             {
                 actualList++;
                 var s = IntMin(actualList);
@@ -151,10 +139,38 @@ namespace Yffff.View
             }
         }
 
+        private void RefreshContent(int start, int end)
+        {
+            var s = content.GetRange(start, end);
+            lbContent.ItemsSource = s;
+            labelList.Content = $"лист{actualList}";
+        }
+        #endregion
+
+
+        public void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+    
         public static int IntMin(int list)
         {
             return (list * 15) - 15;
         }
+        public int GetCountButton(int count)
+        {
+            if (count % 15 == 0)
+            {
+                return count / 15;
+            }
+            else
+            {
+                return count / 15 + 1;
+            }
+
+        }
+
 
         public static int CountContent(int start,int Maxcount)
         {
@@ -171,6 +187,19 @@ namespace Yffff.View
             }
 
 
+        }
+
+        class ComboBoxContent
+        {
+            public string Name { get; set; }
+
+            public void Sort()
+            {
+                switch(Name)
+                {
+                    
+                }
+            }
         }
     }
 }

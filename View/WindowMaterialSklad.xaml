@@ -36,8 +36,8 @@
                      Background="#FFC1C1" MinWidth="100" TextChanged="TextBox_TextChanged" >
                 Поиск
             </TextBox>
-            <ComboBox Margin="5"  VerticalAlignment="Center" 
-                      Background="#FFC1C1" MinWidth="100" ToolTip="Сортировка">
+            <ComboBox  Name="CbSort" Margin="5"  VerticalAlignment="Center" 
+                      Background="#FFC1C1" MinWidth="100" ToolTip="Сортировка" SelectionChanged="CbSort_SelectionChanged">
             </ComboBox>
             <ComboBox Margin="5"  VerticalAlignment="Center" 
                       Background="#FFC1C1" MinWidth="100" ToolTip="Фильтрация">
@@ -80,6 +80,7 @@
         <StackPanel x:Name="spButtons" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
             
         </StackPanel>
+        <Label Grid.Row="2" Grid.Column="0" Name="labelList"></Label>
         
     </Grid>
 </Window>
