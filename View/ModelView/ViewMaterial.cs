@@ -42,11 +42,12 @@ namespace Yffff.View.ModelView
                 DB.dEntities1 entities1 = new dEntities1();
 
                 var s = entities1.Receipts.Where(x =>x.Id_Material == materials.Id).ToList();
-                List<string> vs = new List<string>();
-
-                ProvidersString = vs;
-
                 
+
+                if (s == null) return "Поставщиков нет";
+
+                List<string> vs = new List<string>();
+                ProvidersString = vs;
 
                 foreach(var item in s)
                 {
@@ -89,6 +90,8 @@ namespace Yffff.View.ModelView
             {
                 DB.dEntities1 entities1 = new dEntities1();
                 var s = entities1.Receipts.Where(x => x.Id_Material == materials.Id).Sum(x => x.MaterialsCount);
+                if (s == null) return "Поставщиков нет";
+
                 string content = $"Остаток:{s} шт";
                 count = (int)s;
                 return content;

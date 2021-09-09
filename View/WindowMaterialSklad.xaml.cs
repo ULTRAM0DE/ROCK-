@@ -20,6 +20,8 @@ namespace Yffff.View
     /// </summary>
     public partial class WindowMaterialSklad : Window
     {
+
+        private List<View.ModelView.ViewMaterial> content = new List<ModelView.ViewMaterial>();
         public WindowMaterialSklad()
         {
             InitializeComponent();

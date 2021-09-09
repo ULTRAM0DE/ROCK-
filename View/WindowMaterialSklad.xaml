@@ -76,6 +76,10 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Border>
+
+        <StackPanel>
+            
+        </StackPanel>
         
     </Grid>
 </Window>
