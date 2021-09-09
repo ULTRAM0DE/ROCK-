@@ -175,11 +175,7 @@ namespace Yffff.View
         }
         #endregion
 
-        /// <summary>
-        /// Сортировка
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        #region #Сортировка
         public void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch(CbSort.SelectedItem.ToString())
@@ -195,9 +191,7 @@ namespace Yffff.View
             }
                 
         }
-        
-        
-
+   
         private void SortPriceDown()
         {
             content = content.OrderByDescending(x => x.Materials.Price).ToList();
@@ -228,7 +222,7 @@ namespace Yffff.View
             content = content.OrderByDescending(x => x.Image).ToList();
             Run(content);
         }
-        
+        #endregion
 
         public static int IntMin(int list)
         {
@@ -263,19 +257,6 @@ namespace Yffff.View
             }
 
 
-        }
-
-        class ComboBoxContent
-        {
-            public string Name { get; set; }
-
-            public void Sort()
-            {
-                switch(Name)
-                {
-                    
-                }
-            }
         }
 
         private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
