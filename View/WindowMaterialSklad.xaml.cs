@@ -41,11 +41,12 @@ namespace Yffff.View
             try
             {
                 content = GetContent();
-                lbContent.ItemsSource = content;
-                var s = IntMin(actualList);
-                DinamicStakBytton(content.Count);
-                actualMax = spButtons.Children.Count - 2;
-                labelList.Content = $"лист{actualList}";
+                Run(content);
+                //lbContent.ItemsSource = content;
+               // var s = IntMin(actualList);
+               // DinamicStakBytton(content.Count);
+               // actualMax = spButtons.Children.Count - 2;
+               // labelList.Content = $"лист{actualList}";
                 CbSort.ItemsSource = constenCBSort;
                 CbSort.SelectedIndex = 0;
             }
@@ -53,6 +54,17 @@ namespace Yffff.View
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Run(List<View.ModelView.ViewMaterial> materials)
+        {
+            lbContent.ItemsSource = null;
+            lbContent.ItemsSource = materials;
+            DinamicStakBytton(materials.Count);
+            actualMax = spButtons.Children.Count - 2;
+            var s = IntMin(actualList);
+            RefreshContent(s, CountContent(s, materials.Count), materials);
+            labelList.Content = $"лист{actualList}";
         }
 
         private List<ViewMaterial> GetContent()
@@ -63,7 +75,7 @@ namespace Yffff.View
             }
             catch(Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception();
             }
 
         }
@@ -81,11 +93,21 @@ namespace Yffff.View
         
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            MessageBox.Show("объект не найден");
+            var s = content.Where(x => x.Materials.Name.ToUpper().StartsWith(txSearch.Text.ToUpper())).ToList();
+            Run(content);
+            if(s.Count <1)
+            {
+                MessageBox.Show("Обьект не найден");
+                txSearch.Text = string.Empty;
+                Run(GetContent());
+                return;
+            }
+
         }
         #region #генерация стекпенел навигации
         public void DinamicStakBytton(int count)
         {
+            spButtons.Children.Clear();
             int countButton = GetCountButton( count);
             spButtons.Children.Add(CreateButton("btDown","<<" ,btDown_Click));
            
@@ -118,7 +140,7 @@ namespace Yffff.View
             var but = e.OriginalSource as Button;
             actualList = Convert.ToInt32(but.Content.ToString());
             var s = IntMin(actualList);
-            RefreshContent(s, CountContent(s, content.Count));
+            RefreshContent(s, CountContent(s, content.Count),content);
         }
         private void btDown_Click(object sender, RoutedEventArgs e)
         {
@@ -126,7 +148,7 @@ namespace Yffff.View
             {
                 actualList--;
                 var s = IntMin(actualList);
-                RefreshContent(s, CountContent(s, content.Count));
+                RefreshContent(s, CountContent(s, content.Count), content);
             }
         }
         private void btUp_Click(object Sender, RoutedEventArgs e)
@@ -135,25 +157,75 @@ namespace Yffff.View
             {
                 actualList++;
                 var s = IntMin(actualList);
-                RefreshContent(s, CountContent(s, content.Count));
+                RefreshContent(s, CountContent(s, content.Count), content);
             }
         }
 
-        private void RefreshContent(int start, int end)
+        private void RefreshContent(int start, int end, List<View.ModelView.ViewMaterial> materials)
         {
-            var s = content.GetRange(start, end);
+            List<View.ModelView.ViewMaterial> s = new List<ViewMaterial>();
+            s.AddRange(materials.GetRange(start, end));
+            lbContent.ItemsSource = null;
             lbContent.ItemsSource = s;
             labelList.Content = $"лист{actualList}";
         }
         #endregion
 
-
+        /// <summary>
+        /// Сортировка
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            switch(CbSort.SelectedItem.ToString())
+            {
+                case "Без сортировки": Run(content); break;
+            case "По наименованию(Возрастание)":SortNameUp(); break;
+            case "По наименованию (Убывание)": SortNameDown(); break;
+            case "По остатку на складе(Возрастание)": SortOstatokUp(); break;
+            case "По  остатку на складе(Убывание)": SortOstatokDown(); break;
+            case "По стоимости(Возрастание)": SortPriceUp(); break;
+            case "По стоимости (Убывание)": SortPriceDown(); break;
+                default:break;
+            }
+                
         }
+        
+        
 
-    
+        private void SortPriceDown()
+        {
+            content = content.OrderByDescending(x => x.Materials.Price).ToList();
+            Run(content);
+        }
+        private void SortPriceUp()
+        {
+            content = content.OrderBy(x => x.Materials.Price).ToList();
+            Run(content);
+        }
+        private void SortOstatokDown()
+        {
+            content = content.OrderByDescending(x => x.count).ToList();
+            Run(content);
+        }
+        private void SortOstatokUp()
+        {
+            content = content.OrderBy(x => x.count).ToList();
+            Run(content);
+        }
+        private void SortNameUp()
+        {
+            content = content.OrderBy(x => x.Image).ToList();
+            Run(content);
+        }
+        private void SortNameDown()
+        {
+            content = content.OrderByDescending(x => x.Image).ToList();
+            Run(content);
+        }
+        
+
         public static int IntMin(int list)
         {
             return (list * 15) - 15;

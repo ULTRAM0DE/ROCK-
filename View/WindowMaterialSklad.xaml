@@ -32,7 +32,7 @@
         
         <!--Строка поиска и фильрации-->
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-            <TextBox Margin="5" VerticalAlignment="Center"
+            <TextBox Name="txSearch" Margin="5" VerticalAlignment="Center"
                      Background="#FFC1C1" MinWidth="100" TextChanged="TextBox_TextChanged" >
                 Поиск
             </TextBox>
