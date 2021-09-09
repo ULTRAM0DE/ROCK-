@@ -125,6 +125,7 @@
     <Compile Include="DB\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="View\ContrillerMaterial.cs" />
     <Compile Include="View\ModelView\ViewMaterial.cs" />
     <Compile Include="View\Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>

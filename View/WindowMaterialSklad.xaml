@@ -33,14 +33,14 @@
         <!--Строка поиска и фильрации-->
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
             <TextBox Name="txSearch" Margin="5" VerticalAlignment="Center"
-                     Background="#FFC1C1" MinWidth="100" TextChanged="TextBox_TextChanged" >
-                Поиск
+                     Background="#FFC1C1" MinWidth="100" TextChanged="TextBox_TextChanged" ToolTip="Поиск" >
+               
             </TextBox>
             <ComboBox  Name="CbSort" Margin="5"  VerticalAlignment="Center" 
                       Background="#FFC1C1" MinWidth="100" ToolTip="Сортировка" SelectionChanged="CbSort_SelectionChanged">
             </ComboBox>
-            <ComboBox Margin="5"  VerticalAlignment="Center" 
-                      Background="#FFC1C1" MinWidth="100" ToolTip="Фильтрация">
+            <ComboBox Name="cbFilter" Margin="5"  VerticalAlignment="Center" 
+                      Background="#FFC1C1" MinWidth="100" ToolTip="Фильтрация" SelectionChanged="cbFilter_SelectionChanged">
             </ComboBox>
         </StackPanel>
         

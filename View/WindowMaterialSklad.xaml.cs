@@ -37,18 +37,16 @@ namespace Yffff.View
         {
             InitializeComponent();
            
-  
+
             try
             {
                 content = GetContent();
                 Run(content);
-                //lbContent.ItemsSource = content;
-               // var s = IntMin(actualList);
-               // DinamicStakBytton(content.Count);
-               // actualMax = spButtons.Children.Count - 2;
-               // labelList.Content = $"лист{actualList}";
                 CbSort.ItemsSource = constenCBSort;
                 CbSort.SelectedIndex = 0;
+
+                cbFilter.ItemsSource = ContrillerMaterial.GetMaterial();
+                cbFilter.SelectedIndex = 0;
             }
             catch(Exception ex)
             {
@@ -93,8 +91,12 @@ namespace Yffff.View
         
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+
             var s = content.Where(x => x.Materials.Name.ToUpper().StartsWith(txSearch.Text.ToUpper())).ToList();
-            Run(content);
+
+            s.AddRange(content.Where(x => x.Providers.ToUpper().Contains(txSearch.Text.ToUpper())));
+            s.AddRange(content.Where(x => x.Materials.MaterialTypes.Name.ToUpper().Contains(txSearch.Text.ToUpper())));
+          
             if(s.Count <1)
             {
                 MessageBox.Show("Обьект не найден");
@@ -102,6 +104,8 @@ namespace Yffff.View
                 Run(GetContent());
                 return;
             }
+
+            Run(s);
 
         }
         #region #генерация стекпенел навигации
@@ -272,6 +276,11 @@ namespace Yffff.View
                     
                 }
             }
+        }
+
+        private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
