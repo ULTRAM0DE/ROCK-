@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Yffff.Controllers;
+using Yffff.View.ModelView;
 
 namespace Yffff.View
 {
@@ -28,12 +29,26 @@ namespace Yffff.View
   
             try
             {
-                lbContent.ItemsSource = ControllerMaterial.GetViewMaterials();
+                content = GetContent();
+                lbContent.ItemsSource = content;
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private List<ViewMaterial> GetContent()
+        {
+            try
+            {
+                return ControllerMaterial.GetViewMaterials();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
         private void btDn_Click(object sender, RoutedEventArgs e)
@@ -46,6 +61,24 @@ namespace Yffff.View
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             MessageBox.Show("объект не найден");
+        }
+
+        private void DinamicStakBytton(int count)
+        {
+            int countButton = GetCountButton(count);
+        }
+
+        private int GetCountButton(int count)
+        {
+            if(count % 15==0)
+            {
+                return count / 15;
+            }
+            else
+            {
+                return count / 15 + 1;
+            }
+            
         }
     }
 }
