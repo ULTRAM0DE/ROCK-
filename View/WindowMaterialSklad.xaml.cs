@@ -22,6 +22,9 @@ namespace Yffff.View
     public partial class WindowMaterialSklad : Window
     {
 
+        private int actualList = 1;
+        public int actualMax;
+
         private List<View.ModelView.ViewMaterial> content = new List<ModelView.ViewMaterial>();
         public WindowMaterialSklad()
         {
@@ -31,6 +34,9 @@ namespace Yffff.View
             {
                 content = GetContent();
                 lbContent.ItemsSource = content;
+                var s = IntMin(actualList);
+                DinamicStakBytton(content.Count);
+                actualMax = spButtons.Children.Count - 2;
             }
             catch(Exception ex)
             {
@@ -50,8 +56,10 @@ namespace Yffff.View
             }
 
         }
+       
 
-        private void btDn_Click(object sender, RoutedEventArgs e)
+
+            private void btDn_Click(object sender, RoutedEventArgs e)
         {
             View.WindowMenu menu = new WindowMenu();
             menu.Show();
@@ -63,22 +71,105 @@ namespace Yffff.View
             MessageBox.Show("объект не найден");
         }
 
-        private void DinamicStakBytton(int count)
+        public void DinamicStakBytton(int count)
         {
-            int countButton = GetCountButton(count);
+            int countButton = GetCountButton( count);
+            spButtons.Children.Add(CreateButton("btDown","<<" ,btDown_Click));
+           
+            for (int i = 0; i < GetCountButton(count); i++)
+            {
+                spButtons.Children.Add(CreateButton($"btNext{i}", $"{ i+1}", btNext_Click));
+            }
+            spButtons.Children.Add(CreateButton("btUp", ">>", btUp_Click));
+
+
         }
 
-        private int GetCountButton(int count)
+        
+
+        private void btNext_Click(object sender, RoutedEventArgs e)
         {
-            if(count % 15==0)
+            var but = e.OriginalSource as Button;
+            actualList = Convert.ToInt32(but.Content.ToString());
+            var s = IntMin(actualList);
+            RefreshContent(s, CountContent(s, content.Count));
+        }
+
+        private Button CreateButton(string name, string content,  RoutedEventHandler action )
+        {
+            var b = new Button() { Name = name, Content = content, Margin = new Thickness(5) };
+            b.Background = new SolidColorBrush(Color.FromArgb(255, 255, 193, 193));
+            b.HorizontalAlignment = HorizontalAlignment.Center;
+            
+            b.Click += action;
+
+            return b;
+        }
+
+
+       
+            public int GetCountButton(int count)
             {
-                return count / 15;
+                if (count % 15 == 0)
+                {
+                    return count / 15;
+                }
+                else
+                {
+                    return count / 15 + 1;
+                }
+
+            }
+        
+        
+
+        private void btDown_Click(object sender, RoutedEventArgs e)
+        {
+            if(actualList>1)
+            {
+                actualList--;
+                var s = IntMin(actualList);
+                RefreshContent(s, CountContent(s,content.Count));
+            }
+        }
+
+
+        private void RefreshContent(int start, int end )
+        {
+            var s = content.GetRange(start, end);
+            lbContent.ItemsSource = s;
+        }
+
+        private void btUp_Click(object Sender,RoutedEventArgs e)
+        {
+            if(actualList<actualMax)
+            {
+                actualList++;
+                var s = IntMin(actualList);
+                RefreshContent(s, CountContent(s, content.Count));
+            }
+        }
+
+        public static int IntMin(int list)
+        {
+            return (list * 15) - 15;
+        }
+
+        public static int CountContent(int start,int Maxcount)
+        {
+            int rez = Maxcount - start;
+
+            if(rez>=15)
+            {
+                return 15;
+
             }
             else
             {
-                return count / 15 + 1;
+                return rez;
             }
-            
+
+
         }
     }
 }
