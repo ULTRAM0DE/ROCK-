@@ -32,6 +32,11 @@ namespace Yffff.View
             "По стоимости (Возрастание)" ,"По стоимости (Убывание)"
         };
 
+        private List<string> constencbFilter = new List<string>
+        {
+            "Опилки","Дерево","без сортировки"
+        };
+
         private List<View.ModelView.ViewMaterial> content = new List<ModelView.ViewMaterial>();
         public WindowMaterialSklad()
         {
@@ -63,6 +68,8 @@ namespace Yffff.View
             var s = IntMin(actualList);
             RefreshContent(s, CountContent(s, materials.Count), materials);
             labelList.Content = $"лист{actualList}";
+            labelItog.Content = $"В базе {GetContent().Count}записей";
+            labelRezult.Content = $"Выведено {lbContent.Items.Count}записей";
         }
 
         private List<ViewMaterial> GetContent()
@@ -88,7 +95,11 @@ namespace Yffff.View
             menu.Show();
             this.Close();
         }
-        
+        /// <summary>
+        /// Вывод результатов поиска
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -168,14 +179,25 @@ namespace Yffff.View
         private void RefreshContent(int start, int end, List<View.ModelView.ViewMaterial> materials)
         {
             List<View.ModelView.ViewMaterial> s = new List<ViewMaterial>();
-            s.AddRange(materials.GetRange(start, end));
+
+            if(materials.Count>end && end>0)
+            {
+                s.AddRange(materials.GetRange(start, end));
+            }
+            else
+            {
+                return;
+            }
+            
             lbContent.ItemsSource = null;
             lbContent.ItemsSource = s;
             labelList.Content = $"лист{actualList}";
+            labelItog.Content = $"В базе {GetContent().Count}записей";
+            labelRezult.Content = $"Выведено {lbContent.Items.Count}записей";
         }
         #endregion
 
-        #region #Сортировка
+        #region #Сортировка,поиск и фильтра
         public void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch(CbSort.SelectedItem.ToString())
@@ -191,7 +213,28 @@ namespace Yffff.View
             }
                 
         }
-   
+        private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (cbFilter.SelectedItem.ToString())
+            {
+                case "Без сортировки": Run(content); break;
+                case "Дерево": WoodFilter(); break;
+                case "Опилки": OpilkiFilter(); break;
+                default:break;
+            }
+        }
+
+        private void WoodFilter()
+        {
+            content = content.OrderBy(x => x.count).ToList();
+            Run(content);
+        }
+        private void OpilkiFilter()
+        {
+            content = content.OrderBy(x => x.count).ToList();
+            Run(content);
+        }
+
         private void SortPriceDown()
         {
             content = content.OrderByDescending(x => x.Materials.Price).ToList();
@@ -259,9 +302,6 @@ namespace Yffff.View
 
         }
 
-        private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -42,6 +42,9 @@
             <ComboBox Name="cbFilter" Margin="5"  VerticalAlignment="Center" 
                       Background="#FFC1C1" MinWidth="100" ToolTip="Фильтрация" SelectionChanged="cbFilter_SelectionChanged">
             </ComboBox>
+
+            <Label Margin="5" Name="labelItog"></Label>
+            <Label Margin="5" Name="labelRezult"></Label>
         </StackPanel>
         
         <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="2">

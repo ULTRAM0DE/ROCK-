@@ -1,0 +1,39 @@
+﻿<Window x:Class="Yffff.View.WindowAddMaterial"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Yffff.View"
+        mc:Ignorable="d"
+        Title="WindowAddMaterial" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+            <Button Margin="10" x:Name="btDown" Click="btDn_Click" Background="#D32B39">
+                Назад
+            </Button>
+            <Image Margin="10" Width="50" Height="50" Source="/Image\Большая пачка.ico" ></Image>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Введите название материала</TextBlock>
+                <TextBox MinWidth="100" Margin="5" x:Name="tbName"></TextBox>
+            </StackPanel>
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Подробное  описание</TextBlock>
+                <TextBox MinWidth="100" Margin="5" x:Name="tbDescription"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Укажите цену</TextBlock>
+                <TextBox MinWidth="100" Margin="5" x:Name="tbPrice"></TextBox>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
