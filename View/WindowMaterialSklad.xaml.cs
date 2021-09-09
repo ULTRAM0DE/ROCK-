@@ -98,6 +98,7 @@ namespace Yffff.View
         private Button CreateButton(string name, string content,  RoutedEventHandler action )
         {
             var b = new Button() { Name = name, Content = content, Margin = new Thickness(5) };
+            b.Padding = new Thickness(4);
             b.Background = new SolidColorBrush(Color.FromArgb(255, 255, 193, 193));
             b.HorizontalAlignment = HorizontalAlignment.Center;
             

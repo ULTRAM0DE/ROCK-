@@ -27,6 +27,8 @@ namespace Yffff.View.ModelView
         public ViewMaterial(DB.Materials materials)
         {
             Materials = materials;
+            Image=string.IsNullOrWhiteSpace(materials.ImagePath) ? @"/Image\NoImage.jpg" : materials.ImagePath;
+           
             Image = materials.ImagePath;
             NameEndType = $"{materials.MaterialTypes.Name} | {materials.Name}";
             MinCol = $"Минимальное количество {materials.MinCount} шт";
