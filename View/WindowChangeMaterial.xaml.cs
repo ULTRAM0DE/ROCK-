@@ -27,7 +27,7 @@ namespace Yffff.View
             InitializeComponent();
         }
 
-        public WindowChangeMaterial(ViewMaterial material)
+        public WindowChangeMaterial(ViewMaterial material):this()
         {
             Material = material;
             tbName.Text = Material.Materials.Name;
@@ -57,6 +57,30 @@ namespace Yffff.View
             {
                 MessageBox.Show("Error bd");
             }
+        }
+
+        private void btAdd_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ControllerMaterial.ChaneMateril(tbName.Text, tbDescription.Text
+                   , tbMinCount.Text, tbPackageCount.Text, tbPrice.Text, cbImage.SelectedItem,
+                   cbSI.SelectedItem, cbTypeMaterial.SelectedItem, Material.Materials)) 
+                {
+                    MessageBox.Show("Обьект сохранен");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btDn_Click(object sender, RoutedEventArgs e)
+        {
+            View.WindowMenu windowMenu = new WindowMenu();
+            windowMenu.Show();
+            this.Close();
         }
     }
 }
