@@ -101,7 +101,7 @@ namespace Yffff.View
 
 
 
-            if (cbSI.SelectedIndex <= 0)
+            if (cbSI.SelectedIndex < 0)
             {
                 MessageBox.Show("Выберите единицу измерения");
                 return;
@@ -109,7 +109,8 @@ namespace Yffff.View
 
             try
             {
-                if(ControllerMaterial.AddMateril(tbName.Text, tbDescription.Text, tbMinCount.Text, tbPackageCount.Text, tbPrice.Text, cbImage.SelectedItem, cbSI.SelectedItem, cbTypeMaterial.SelectedItem))
+                if(ControllerMaterial.AddMateril(tbName.Text, tbDescription.Text, tbMinCount.Text,
+                    tbPackageCount.Text, tbPrice.Text, cbImage.SelectedItem, cbSI.SelectedItem, cbTypeMaterial.SelectedItem))
                 {
                     MessageBox.Show("Обьект добавлен в БД");
                 }
@@ -120,7 +121,7 @@ namespace Yffff.View
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Ошибка добавления в  бд");
             }
         }
         

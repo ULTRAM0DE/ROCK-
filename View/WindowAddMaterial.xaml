@@ -36,8 +36,7 @@
                 <TextBlock Margin="5">Укажите цену</TextBlock>
                 <TextBox MinWidth="100" Margin="5" x:Name="tbPrice"></TextBox>
                 <TextBlock  Margin="5">рублей</TextBlock>
-                <TextBox MinWidth="100" Margin="5" x:Name="tbPrice1"></TextBox>
-                <TextBlock  Margin="5">копеек</TextBlock>
+               
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Margin="5">Единица измерения</TextBlock>

@@ -32,7 +32,8 @@ namespace Yffff.Controllers
            
         }
 
-        internal static bool AddMateril(string name, string description, string mincount, string packagecount, string price, object image, object si, object typematerial)
+        internal static bool AddMateril(string name, string description, string mincount, string packagecount, 
+            string price, object image, object si, object typematerial)
         {
             DB.Materials newmaterials = new DB.Materials();
             try
@@ -81,7 +82,7 @@ namespace Yffff.Controllers
             try
             {
                 DB.dEntities1 entities1 = new DB.dEntities1();
-                return entities1.MaterialSI.Where(x => x.Name == name).First().Id;
+                return entities1.MaterialTypes.Where(x => x.Name == name).First().Id;
             }
             catch
             {
@@ -98,7 +99,7 @@ namespace Yffff.Controllers
             }
             catch
             {
-                throw new Exception("единицы измерения  не найдены  в бд");
+                throw new Exception("Материал не найден в БД");
             }
         }
 
