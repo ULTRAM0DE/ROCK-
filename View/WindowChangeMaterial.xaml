@@ -1,0 +1,85 @@
+﻿<Window x:Class="Yffff.View.WindowChangeMaterial"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Yffff.View"
+        mc:Ignorable="d"
+        Title="Редактировать материал" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Left">
+            <Button Margin="10" x:Name="btDown" Click="btDn_Click" Background="#D32B39">
+                Назад
+            </Button>
+            <Image Margin="10" Width="50" Height="50" Source="/Image\Большая пачка.ico" ></Image>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Введите название материала</TextBlock>
+                <TextBox MinWidth="100" Margin="5" x:Name="tbName"></TextBox>
+            </StackPanel>
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Подробное  описание</TextBlock>
+                <TextBox MinWidth="100" Margin="5" x:Name="tbDescription"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Укажите цену</TextBlock>
+                <TextBox MinWidth="100" Margin="5" x:Name="tbPrice"></TextBox>
+                <TextBlock  Margin="5">рублей</TextBlock>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Margin="5">Единица измерения</TextBlock>
+                <ComboBox Margin="5" Name="cbSI"></ComboBox>
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Margin="5">минимальное кол-во</TextBlock>
+                <TextBox MinWidth="100" Margin="5" x:Name="tbMinCount"></TextBox>
+                <TextBlock Margin="5"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Margin="5">кол-во в упаковке</TextBlock>
+                <TextBox MinWidth="100" Margin="5" x:Name="tbPackageCount"></TextBox>
+                <TextBlock Margin="5"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Margin="5">Материал</TextBlock>
+                <ComboBox Margin="5" Name="cbTypeMaterial"></ComboBox>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Margin="5">Изображение</TextBlock>
+                <ComboBox Margin="5" Name="cbImage">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0">
+                                    <Image Width="40" Height="40" Source="{Binding ImagePath}"></Image>
+                                </Border>
+                                <TextBlock Grid.Column="1" Margin="5" Text="{Binding NameImage}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+
+            </StackPanel>
+            <Button Margin="5" Background="#FFC1C1" x:Name="btChange" Click="btAdd_Click">Сохранить изменения</Button>
+        </StackPanel>
+
+    </Grid>
+</Window>

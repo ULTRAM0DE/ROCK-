@@ -47,8 +47,8 @@
             <Label Margin="5" Name="labelRezult"></Label>
             <Button x:Name="btAddMaterial" Click="btAddMaterial_Click">Добавить материал</Button>
         </StackPanel>
-        
-        <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="2">
+
+        <Border ToolTip="Кликнете дважды что бы редактировать" Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="2">
             <ListBox x:Name="lbContent">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

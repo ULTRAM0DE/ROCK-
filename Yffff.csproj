@@ -130,8 +130,8 @@
     <Compile Include="View\ContrillerSI.cs" />
     <Compile Include="View\ModelView\Image.cs" />
     <Compile Include="View\ModelView\ViewMaterial.cs" />
-    <Compile Include="View\Window2.xaml.cs">
-      <DependentUpon>Window2.xaml</DependentUpon>
+    <Compile Include="View\WindowAddImage.xaml.cs">
+      <DependentUpon>WindowAddImage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Window3.xaml.cs">
       <DependentUpon>Window3.xaml</DependentUpon>
@@ -141,6 +141,9 @@
     </Compile>
     <Compile Include="View\WindowAddMaterial.xaml.cs">
       <DependentUpon>WindowAddMaterial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WindowChangeMaterial.xaml.cs">
+      <DependentUpon>WindowChangeMaterial.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WindowMaterialSklad.xaml.cs">
       <DependentUpon>WindowMaterialSklad.xaml</DependentUpon>
@@ -160,7 +163,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Window2.xaml">
+    <Page Include="View\WindowAddImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WindowAddMaterial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WindowChangeMaterial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

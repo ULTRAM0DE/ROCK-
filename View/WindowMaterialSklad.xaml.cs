@@ -37,6 +37,8 @@ namespace Yffff.View
             "Опилки","Дерево","без сортировки"
         };
 
+        
+
         private List<View.ModelView.ViewMaterial> content = new List<ModelView.ViewMaterial>();
         public WindowMaterialSklad()
         {
@@ -57,6 +59,19 @@ namespace Yffff.View
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void LbContent_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var sours = e.OriginalSource as Border;
+            if(sours == null)
+            {
+                return;
+            }
+            var material = sours.DataContext as View.ModelView.ViewMaterial;
+            View.WindowChangeMaterial window = new WindowChangeMaterial();
+            window.Show();
+            this.Close();
         }
 
         private void Run(List<View.ModelView.ViewMaterial> materials)
