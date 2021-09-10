@@ -47,6 +47,8 @@ public partial class Materials
 
     public string Name { get; set; }
 
+    public string Discriptions { get; set; }
+
 
 
     public virtual MaterialColors MaterialColors { get; set; }

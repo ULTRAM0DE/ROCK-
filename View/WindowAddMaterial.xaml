@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yffff.View"
         mc:Ignorable="d"
-        Title="WindowAddMaterial" MinHeight="300" MinWidth="500" 
+        Title="WindowAddMaterial" MinHeight="500" MinWidth="1000" MaxHeight="1000" MaxWidth="1000"
         Icon="/Image\Большая пачка.ico" FontFamily="Verdana">
 
     <Grid>
@@ -45,6 +45,11 @@
 
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Margin="5">минимальное кол-во</TextBlock>
+                <TextBox MinWidth="100" Margin="5" x:Name="tbMinCount"></TextBox>
+                <TextBlock Margin="5"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
                 <TextBlock Margin="5">кол-во в упаковке</TextBlock>
                 <TextBox MinWidth="100" Margin="5" x:Name="tbPackageCount"></TextBox>
                 <TextBlock Margin="5"></TextBlock>
@@ -54,7 +59,29 @@
                 <ComboBox Margin="5" Name="cbTypeMaterial"></ComboBox>
                 
             </StackPanel>
-            <Button Margin="5" Background="#FFC1C1" x:Name="btAdd">Добавить в БД</Button>
+
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Margin="5">Изображение</TextBlock>
+                <ComboBox Margin="5" Name="cbImage">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0">
+                                    <Image Width="40" Height="40" Source="{Binding ImagePath}"></Image>
+                                </Border>
+                                <TextBlock Grid.Column="1" Margin="5" Text="{Binding NameImage}"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                
+
+            </StackPanel>
+            <Button Margin="5" Background="#FFC1C1" x:Name="btAdd" Click="btAdd_Click">Добавить в БД</Button>
         </StackPanel>
         
     </Grid>

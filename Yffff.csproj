@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\ConterollerImage.cs" />
     <Compile Include="Controllers\ControllerMaterial.cs" />
     <Compile Include="DB\Logs.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -127,6 +128,7 @@
     </Compile>
     <Compile Include="View\ContrillerMaterial.cs" />
     <Compile Include="View\ContrillerSI.cs" />
+    <Compile Include="View\ModelView\Image.cs" />
     <Compile Include="View\ModelView\ViewMaterial.cs" />
     <Compile Include="View\Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>

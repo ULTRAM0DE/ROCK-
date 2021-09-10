@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Yffff.Controllers;
 
 namespace Yffff.View
 {
@@ -31,7 +32,7 @@ namespace Yffff.View
             {
                 Run();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -41,6 +42,7 @@ namespace Yffff.View
         {
             cbTypeMaterial.ItemsSource = ContrillerMaterial.GetMaterialComboBox();
             cbSI.ItemsSource = ContrillerSI.GetSIComboBox();
+            cbImage.ItemsSource = ConterollerImage.GetImages();
         }
 
         private void btDn_Click(object sender, RoutedEventArgs e)
@@ -50,11 +52,81 @@ namespace Yffff.View
             this.Close();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void btAdd_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(tbName.Text))
+            {
+                MessageBox.Show("Имя не задано");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(tbPrice.Text))
+            {
+                MessageBox.Show("Укажите цену");
+                return;
 
+            }
+
+            try
+            {
+                double p = Convert.ToDouble(tbPrice.Text);
+                if (p < 0)
+                {
+                    MessageBox.Show("Цена не может быть отрицательной");
+                    return;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Укажите верный формат цены");
+            }
+
+            if (string.IsNullOrWhiteSpace(tbPackageCount.Text))
+            {
+                MessageBox.Show("Укажите кол-во в пачке");
+                return;
+            }
+            try
+            {
+                int count = Convert.ToInt32(tbPackageCount.Text);
+                if (count < 0)
+                {
+                    MessageBox.Show("Кол-во в пачке не может быть отрицательным");
+                    return;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Укажите правильный формат количества в пачке");
+            }
+
+
+
+            if (cbSI.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Выберите единицу измерения");
+                return;
+            }
+
+            try
+            {
+                if(ControllerMaterial.AddMateril(tbName.Text, tbDescription.Text, tbMinCount.Text, tbPackageCount.Text, tbPrice.Text, cbImage.SelectedItem, cbSI.SelectedItem, cbTypeMaterial.SelectedItem))
+                {
+                    MessageBox.Show("Обьект добавлен в БД");
+                }
+                else
+                {
+                    MessageBox.Show("Объект не   добавлен в  БД");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
-    }
+        
 
-    
+
+
+
+    }
 }

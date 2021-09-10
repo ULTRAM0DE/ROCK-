@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 
 namespace Yffff.View
 {
@@ -7,7 +8,15 @@ namespace Yffff.View
     {
         internal static IEnumerable GetSIComboBox()
         {
-            throw new NotImplementedException();
+            try
+            {
+                DB.dEntities1 entities1 = new DB.dEntities1();
+                return entities1.MaterialSI.Select(x => x.Name).OrderBy(x => x).ToList();
+            }
+            catch
+            {
+                throw new Exception("Error BD");
+            }
         }
     }
 }

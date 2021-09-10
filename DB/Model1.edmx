@@ -24,7 +24,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_MaterialType" Type="int" Nullable="false" />
           <Property Name="Id_MaterialColor" Type="int" Nullable="false" />
           <Property Name="Id_MaterialStandart" Type="int" Nullable="false" />
@@ -34,6 +34,7 @@
           <Property Name="CountPerPack" Type="int" />
           <Property Name="Id_MaterialSI" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Discriptions" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="MaterialSI">
           <Key>
@@ -339,6 +340,7 @@
           <NavigationProperty Name="MaterialTypes" Relationship="Self.FK_Materials_MaterialTypes" FromRole="Materials" ToRole="MaterialTypes" />
           <NavigationProperty Name="Receipts" Relationship="Self.FK_Receipts_Materials" FromRole="Materials" ToRole="Receipts" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MaterialSI">
           <Key>
@@ -660,6 +662,7 @@
           <EntitySetMapping Name="Materials">
             <EntityTypeMapping TypeName="dModel.Materials">
               <MappingFragment StoreEntitySet="Materials">
+                <ScalarProperty Name="Discriptions" ColumnName="Discriptions" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_MaterialType" ColumnName="Id_MaterialType" />
