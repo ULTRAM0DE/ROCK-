@@ -107,8 +107,10 @@ namespace Yffff.View
 
             s.AddRange(content.Where(x => x.Providers.ToUpper().Contains(txSearch.Text.ToUpper())));
             s.AddRange(content.Where(x => x.Materials.MaterialTypes.Name.ToUpper().Contains(txSearch.Text.ToUpper())));
-          
-            if(s.Count <1)
+
+            s = s.Distinct().ToList();
+
+            if (s.Count <1)
             {
                 MessageBox.Show("Обьект не найден");
                 txSearch.Text = string.Empty;
@@ -302,6 +304,11 @@ namespace Yffff.View
 
         }
 
-        
+        private void btAddMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            View.WindowAddMaterial windowAddMaterial = new WindowAddMaterial();
+            windowAddMaterial.Show();
+            this.Close();
+        }
     }
 }

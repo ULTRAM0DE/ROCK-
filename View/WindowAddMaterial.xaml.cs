@@ -22,11 +22,32 @@ namespace Yffff.View
         public WindowAddMaterial()
         {
             InitializeComponent();
+            this.Loaded += WindowAddMaterial_Loaded;
+        }
+
+        private void WindowAddMaterial_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Run();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Run()
+        {
+            cbTypeMaterial.ItemsSource = ContrillerMaterial.GetMaterialComboBox();
+            cbSI.ItemsSource = ContrillerSI.GetSIComboBox();
         }
 
         private void btDn_Click(object sender, RoutedEventArgs e)
         {
-
+            View.WindowMaterialSklad windowMaterialSklad = new WindowMaterialSklad();
+            windowMaterialSklad.Show();
+            this.Close();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -34,4 +55,6 @@ namespace Yffff.View
 
         }
     }
+
+    
 }
