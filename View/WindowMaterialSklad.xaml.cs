@@ -43,6 +43,7 @@ namespace Yffff.View
         public WindowMaterialSklad()
         {
             InitializeComponent();
+            lbContent.MouseDoubleClick += LbContent_MouseDoubleClick;
            
 
             try

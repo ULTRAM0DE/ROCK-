@@ -107,6 +107,12 @@ namespace Yffff.Controllers
             }
         }
 
+        internal static void Remove(Materials materials)
+        {
+            DB.dEntities1 entities1 = new DB.dEntities1();
+            entities1.Materials.Remove(entities1.Materials.Find(materials.Id));
+            entities1.SaveChanges();
+        }
 
         internal static bool ChaneMateril(string name, string description, string mincount, string packagecount,
             string price, object image, object si, object typematerial, DB.Materials materials)

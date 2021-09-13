@@ -10,54 +10,57 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
         <StackPanel Grid.Column="0" HorizontalAlignment="Left">
-            <Button Margin="10" x:Name="btDown" Click="btDn_Click" Background="#D32B39">
+            <Button Click="btDn_Click"  Padding="5" Margin="10" x:Name="btDn"
+                     >
                 Назад
             </Button>
-            <Image Margin="10" Width="50" Height="50" Source="/Image\Большая пачка.ico" ></Image>
         </StackPanel>
 
+        <Image Margin="10" Width="50" Height="50" Source="/Image\Большая пачка.png"></Image>
         <StackPanel Grid.Row="1" Grid.Column="1">
 
             <StackPanel Margin="5" Orientation="Horizontal">
                 <TextBlock Margin="5">Введите название материала</TextBlock>
-                <TextBox MinWidth="100" Margin="5" x:Name="tbName"></TextBox>
+                <TextBox  MinWidth="100" Margin="5" x:Name="tbName"></TextBox>
             </StackPanel>
 
             <StackPanel Margin="5" Orientation="Horizontal">
                 <TextBlock Margin="5">Подробное  описание</TextBlock>
-                <TextBox MinWidth="100" Margin="5" x:Name="tbDescription"></TextBox>
+                <TextBox  TextWrapping="Wrap" AcceptsReturn="True"    MinWidth="100" Margin="5" x:Name="tbDescription"></TextBox>
             </StackPanel>
             <StackPanel Margin="5" Orientation="Horizontal">
                 <TextBlock Margin="5">Укажите цену</TextBlock>
-                <TextBox MinWidth="100" Margin="5" x:Name="tbPrice"></TextBox>
-                <TextBlock  Margin="5">рублей</TextBlock>
-
+                <TextBox  MinWidth="100" Margin="5" x:Name="tbPrice"></TextBox>
+                <TextBlock Margin="5">P</TextBlock>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="5">Единица измерения</TextBlock>
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">единица измерения</TextBlock>
                 <ComboBox Margin="5" Name="cbSI"></ComboBox>
+                <TextBlock  Margin="5"></TextBlock>
+            </StackPanel>
 
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="5">минимальное кол-во</TextBlock>
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Минимальное кол-во</TextBlock>
                 <TextBox MinWidth="100" Margin="5" x:Name="tbMinCount"></TextBox>
+                <TextBlock  Margin="5" ></TextBlock>
+            </StackPanel>
+
+            <StackPanel Margin="5" Orientation="Horizontal">
+                <TextBlock Margin="5">Кол-во  в  упаковке</TextBlock>
+                <TextBox  MinWidth="100" Margin="5" x:Name="tbPackageCount"></TextBox>
                 <TextBlock Margin="5"></TextBlock>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Margin="5">кол-во в упаковке</TextBlock>
-                <TextBox MinWidth="100" Margin="5" x:Name="tbPackageCount"></TextBox>
-                <TextBlock Margin="5"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5">
+
+            <StackPanel  Margin="5" Orientation="Horizontal">
                 <TextBlock Margin="5">Материал</TextBlock>
                 <ComboBox Margin="5" Name="cbTypeMaterial"></ComboBox>
-
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="5">
+            <StackPanel  Margin="5" Orientation="Horizontal">
                 <TextBlock Margin="5">Изображение</TextBlock>
                 <ComboBox Margin="5" Name="cbImage">
                     <ComboBox.ItemTemplate>
@@ -68,18 +71,17 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="0">
-                                    <Image Width="40" Height="40" Source="{Binding ImagePath}"></Image>
+                                    <Image Width="40" Height="40" Source="{Binding ImagePath}"/>
                                 </Border>
                                 <TextBlock Grid.Column="1" Margin="5" Text="{Binding NameImage}"></TextBlock>
                             </Grid>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-
-
             </StackPanel>
-            <Button Margin="5" Background="#FFC1C1" x:Name="btChange" Click="btAdd_Click">Сохранить изменения</Button>
-        </StackPanel>
 
+            <Button Click="btAdd_Click"  Margin="5"  x:Name="btAdd">Сохранить в БД</Button>
+            <Button Click="btRemove_Click"   Margin="5"  x:Name="btRemove">Удалить из БД</Button>
+        </StackPanel>
     </Grid>
 </Window>

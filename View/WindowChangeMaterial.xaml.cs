@@ -21,7 +21,7 @@ namespace Yffff.View
     /// </summary>
     public partial class WindowChangeMaterial : Window
     {
-        public ViewMaterial Material {get;set;}
+        public ViewMaterial Material {get;}
         public WindowChangeMaterial()
         {
             InitializeComponent();
@@ -34,6 +34,7 @@ namespace Yffff.View
             tbMinCount.Text = Material.Materials.MinCount.ToString();
             tbDescription.Text = Material.Materials.Discriptions;
             tbPrice.Text = Material.Materials.Price.ToString();
+           
 
             try
             {
@@ -42,13 +43,13 @@ namespace Yffff.View
                 cbImage.ItemsSource = ConterollerImage.GetImages();
 
                 var sb = (cbSI.ItemsSource as List<string>)
+                    .Single(x => x == material.Materials.MaterialSI.Name);
+
+                cbSI.SelectedIndex = cbSI.Items.IndexOf(sb);
+
+
+                var sbType = (cbTypeMaterial.ItemsSource as List<string>)
                     .Single(x => x == material.Materials.MaterialTypes.Name);
-
-              
-
-                cbImage.SelectedItem = cbTypeMaterial.Items.IndexOf(sb);
-
-                var sbType = (cbTypeMaterial.ItemsSource as List<string>).Single(x => x == material.Materials.MaterialTypes.Name);
 
                 cbTypeMaterial.SelectedIndex = cbTypeMaterial.Items.IndexOf(sbType);
                 cbImage.SelectedIndex = 1;
@@ -78,9 +79,25 @@ namespace Yffff.View
 
         private void btDn_Click(object sender, RoutedEventArgs e)
         {
-            View.WindowMenu windowMenu = new WindowMenu();
-            windowMenu.Show();
+            View.WindowMaterialSklad windowMaterialSklad = new WindowMaterialSklad();
+            windowMaterialSklad.Show();
             this.Close();
+        }
+
+        private void btRemove_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Вы уверены что  хотите удалить", "Удалить  Объект?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    ControllerMaterial.Remove(Material.Materials);
+                    MessageBox.Show("Обьект удален");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

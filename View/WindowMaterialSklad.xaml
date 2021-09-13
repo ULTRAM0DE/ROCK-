@@ -34,7 +34,7 @@
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
             <TextBox Name="txSearch" Margin="5" VerticalAlignment="Center"
                      Background="#FFC1C1" MinWidth="100" TextChanged="TextBox_TextChanged" ToolTip="Поиск" >
-               
+
             </TextBox>
             <ComboBox  Name="CbSort" Margin="5"  VerticalAlignment="Center" 
                       Background="#FFC1C1" MinWidth="100" ToolTip="Сортировка" SelectionChanged="CbSort_SelectionChanged">
@@ -46,19 +46,20 @@
             <Label Margin="5" Name="labelItog"></Label>
             <Label Margin="5" Name="labelRezult"></Label>
             <Button x:Name="btAddMaterial" Click="btAddMaterial_Click">Добавить материал</Button>
-        </StackPanel>
 
-        <Border ToolTip="Кликнете дважды что бы редактировать" Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="2">
+        </StackPanel>
+        <Border  Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="2">
+   
             <ListBox x:Name="lbContent">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="2">
+                                <Border ToolTip="Кликнете дважды что бы редактировать" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="2">
                             <Grid HorizontalAlignment="Stretch" Margin="25">
                             
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                            <ColumnDefinition MinWidth="200" Width="400"/> 
+                                            <ColumnDefinition  Width="200"/> 
                                 </Grid.ColumnDefinitions>
                             
                             <Grid.RowDefinitions>
@@ -73,9 +74,10 @@
                                 <Label Grid.Column="1" Grid.Row="1" Content="{Binding MinCol}"></Label>
                                 <Label Grid.Column="1" Grid.Row="2" Content="{Binding Providers}"></Label>
                                 <Label Grid.Column="2" Grid.Row="1" Content="{Binding Ostatok}"></Label>
-                                                      
-                            </Grid>
-                        </Border>
+                                </Grid>
+
+
+                            </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
