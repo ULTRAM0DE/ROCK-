@@ -70,7 +70,7 @@ namespace Yffff.View
                 return;
             }
             var material = sours.DataContext as View.ModelView.ViewMaterial;
-            View.WindowChangeMaterial window = new WindowChangeMaterial();
+            View.WindowChangeMaterial window = new WindowChangeMaterial(material);
             window.Show();
             this.Close();
         }

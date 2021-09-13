@@ -109,20 +109,33 @@ namespace Yffff.Controllers
 
         internal static void Remove(Materials materials)
         {
-            DB.dEntities1 entities1 = new DB.dEntities1();
-            entities1.Materials.Remove(entities1.Materials.Find(materials.Id));
-            entities1.SaveChanges();
+            try
+            {
+                DB.dEntities1 entities1 = new DB.dEntities1();
+                entities1.Materials.Remove(entities1.Materials.Find(materials.Id));
+                entities1.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Удаление не получилось");
+            }
+           
         }
 
-        internal static bool ChaneMateril(string name, string description, string mincount, string packagecount,
-            string price, object image, object si, object typematerial, DB.Materials materials)
+        internal static bool ChaneMateril(string name, string description, string mincount,
+            string packagecount,
+            string price, 
+            object image,
+            object si, 
+            object typematerial, DB.Materials materials)
         {
             DB.dEntities1 entities1 = new DB.dEntities1();
 
             DB.Materials newmaterials = entities1.Materials.Find(materials.Id);
+            
             try
             {
-                newmaterials = new DB.Materials();
+                
 
                 View.ModelView.Image im = image as View.ModelView.Image;
 
@@ -134,8 +147,7 @@ namespace Yffff.Controllers
                 newmaterials.Id_MaterialType = GetIdMaterialType(typematerial as string);
                 newmaterials.Id_MaterialSI = GetIdMaterialSy(si as string);
                 newmaterials.Discriptions = description;
-                newmaterials.Id_MaterialColor = 1;
-                newmaterials.Id_MaterialStandart = 1;
+               
             }
             catch
             {
